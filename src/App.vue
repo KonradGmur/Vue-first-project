@@ -1,7 +1,11 @@
 <template>
 <div>
-    <h1>{{ title }}</h1>
-    <button @click="greet">Add</button>
+    <input type="text" placeholder="todo" v-model="newItem" />
+    <button @click="addItem">Dodaj</button>
+
+    <div v-for="item in items" v-bind:key="item.id">
+        <h2>{{ item.title }}</h2>
+    </div>
 </div>
 </template>
 
@@ -9,12 +13,28 @@
 export default {
     data() {
         return {
-            title: "Hello Vue",
+            newItem: "",
+            items: [{
+                    id: 1,
+                    title: "Zrobic zakupy",
+                    completed: false,
+                },
+                {
+                    id: 2,
+                    title: "Nagrać film",
+                    completed: false,
+                },
+            ],
         };
     },
     methods: {
-        greet() {
-            alert("Hello!!!");
+        addItem() {
+            this.items.push({
+                id: 3,
+                title: this.newItem,
+                completed: false,
+            });
+            this.newItem = "";
         },
     },
 };
