@@ -1,66 +1,16 @@
 <template>
 <div>
-    <div class="item">
-        <input type="text" placeholder="todo" v-model="newItem" />
-        <button @click="addItem">Dodaj</button>
-    </div>
-
-    <div class="item" v-bind:class="{ completed: item.completed }" v-for="item in items" v-bind:key="item.id">
-        <h2>{{ item.title }}</h2>
-        <button v-if="!item.completed" @click="removeItem(item.id)">
-            Zrobione
-        </button>
-    </div>
+    <h1>Todo App</h1>
+    <TodoApp />
 </div>
 </template>
 
 <script>
+import Todo from "./components/TodoApp";
+
 export default {
-    data() {
-        return {
-            newItem: "",
-            items: [{
-                    id: 1,
-                    title: "Zrobic zakupy",
-                    completed: false,
-                },
-                {
-                    id: 2,
-                    title: "Nagrać film",
-                    completed: true,
-                },
-            ],
-        };
-    },
-    methods: {
-        addItem() {
-            this.items.push({
-                id: 3,
-                title: this.newItem,
-                completed: false,
-            });
-            this.newItem = "";
-        },
-        removeItem(id) {
-            const index = this.items.findIndex((el) => el.id === id);
-            this.items[index].completed = true;
-        },
+    components: {
+        TodoApp: Todo,
     },
 };
 </script>
-
-<style>
-.item {
-    border: 1px solid #cdcdcd;
-    margin: 8px;
-    padding: 10px;
-}
-
-.completed {
-    opacity: 0.5;
-}
-
-.completed h2 {
-    text-decoration: line-through;
-}
-</style>
