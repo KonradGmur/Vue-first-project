@@ -1,9 +1,11 @@
 <template>
 <div>
-    <input type="text" placeholder="todo" v-model="newItem" />
-    <button @click="addItem">Dodaj</button>
+    <div class="item">
+        <input type="text" placeholder="todo" v-model="newItem" />
+        <button @click="addItem">Dodaj</button>
+    </div>
 
-    <div v-for="item in items" v-bind:key="item.id">
+    <div class="item" v-bind:class="{ completed: item.completed }" v-for="item in items" v-bind:key="item.id">
         <h2>{{ item.title }}</h2>
     </div>
 </div>
@@ -22,7 +24,7 @@ export default {
                 {
                     id: 2,
                     title: "Nagrać film",
-                    completed: false,
+                    completed: true,
                 },
             ],
         };
@@ -39,3 +41,19 @@ export default {
     },
 };
 </script>
+
+<style>
+.item {
+    border: 1px solid #cdcdcd;
+    margin: 8px;
+    padding: 10px;
+}
+
+.completed {
+    opacity: 0.5;
+}
+
+.completed h2 {
+    text-decoration: line-through;
+}
+</style>
