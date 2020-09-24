@@ -7,7 +7,9 @@
 
     <div class="item" v-bind:class="{ completed: item.completed }" v-for="item in items" v-bind:key="item.id">
         <h2>{{ item.title }}</h2>
-        <button v-if="!item.completed" @click="removeItem">Zrobione</button>
+        <button v-if="!item.completed" @click="removeItem(item.id)">
+            Zrobione
+        </button>
     </div>
 </div>
 </template>
@@ -38,6 +40,10 @@ export default {
                 completed: false,
             });
             this.newItem = "";
+        },
+        removeItem(id) {
+            const index = this.items.findIndex((el) => el.id === id);
+            this.items[index].completed = true;
         },
     },
 };
