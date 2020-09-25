@@ -10,7 +10,7 @@ export default {
     props: ["item"],
     methods: {
         removeItem() {
-            // this.$emit("remove-clicked", this.item.id);
+            this.$emit("remove-clicked", this.item.id);
         },
     },
 };

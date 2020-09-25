@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// import Todo from "./components/TodoApp";
+import Todo from "./components/TodoApp";
 
 export default {
     components: {
